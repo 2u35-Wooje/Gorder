@@ -8,6 +8,7 @@ require (
 	github.com/2u35-Wooje/gorder-v2/common v0.0.0-00010101000000-000000000000
 	github.com/gin-gonic/gin v1.10.1
 	github.com/oapi-codegen/runtime v1.1.2
+	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/viper v1.20.1
 	google.golang.org/grpc v1.67.3
 	google.golang.org/protobuf v1.36.1
@@ -38,7 +39,6 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.4 // indirect
 	github.com/sagikazarmark/locafero v0.9.0 // indirect
-	github.com/sirupsen/logrus v1.8.1 // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.14.0 // indirect
 	github.com/spf13/cast v1.9.2 // indirect
