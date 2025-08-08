@@ -2,10 +2,12 @@ package main
 
 import (
 	"github.com/2u35-Wooje/gorder-v2/common/config"
+	"github.com/2u35-Wooje/gorder-v2/common/genproto/orderpb"
 	"github.com/2u35-Wooje/gorder-v2/common/server"
 	"github.com/2u35-Wooje/gorder-v2/order/ports"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
+	"google.golang.org/grpc"
 	"log"
 )
 
@@ -17,12 +19,17 @@ func init() {
 
 func main() {
 	serviceName := viper.GetString("order.service-name")
+
+	go server.RunGRPCServer(serviceName, func(server *grpc.Server) {
+		svc := ports.NewGrpcServer()
+		orderpb.RegisterOrderServiceServer(server, svc)
+	})
+
 	server.RunHTTPServer(serviceName, func(router *gin.Engine) {
 		ports.RegisterHandlersWithOptions(router, HTTPServer{}, ports.GinServerOptions{
 			BaseURL:      "/api",
 			Middlewares:  nil,
 			ErrorHandler: nil,
 		})
-
 	})
 }
